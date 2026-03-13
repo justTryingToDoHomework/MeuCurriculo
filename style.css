@@ -1,0 +1,179 @@
+:root {
+    --primary: #2c3e50;
+    --accent: #3498db;
+    --white: #ffffff;
+    --text-dark: #333;
+    --text-gray: #666;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Barra de Progresso */
+.progress-container {
+    position: fixed;
+    top: 0;
+    z-index: 2000;
+    width: 100%;
+    height: 5px;
+    background: transparent;
+}
+
+.progress-bar {
+    height: 5px;
+    background: var(--accent);
+    width: 0%;
+    transition: width 0.1s ease;
+}
+
+/* Fundo com Mesh Gradient (Luzes desfocadas) */
+body {
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 50px 20px;
+    background-color: #f0f2f5;
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(52, 152, 219, 0.2) 0px, transparent 50%), 
+        radial-gradient(at 100% 100%, rgba(44, 62, 80, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(52, 152, 219, 0.1) 0px, transparent 50%);
+    background-attachment: fixed;
+}
+
+/* Container com efeito de Vidro (Glassmorphism) */
+.container {
+    max-width: 850px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.85); /* Branco translúcido */
+    backdrop-filter: blur(12px); /* Desfoque do fundo */
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 12px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+    overflow: hidden;
+    animation: fadeInSlide 0.8s ease-out forwards;
+}
+
+/* Animação de entrada */
+@keyframes fadeInSlide {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Header */
+.header-top {
+    /* Gradiente moderno em tons de azul escuro e cinza */
+    background: #2c3e50; /* Fallback para navegadores antigos */
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%); 
+    
+    /* Propriedades para garantir a cor na impressão */
+    print-color-adjust: exact; 
+    -webkit-print-color-adjust: exact; 
+    
+    position: relative;
+    overflow: hidden;
+    color: var(--white);
+    padding: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 5px solid var(--accent);
+}
+
+.nome { font-size: 32px; margin-bottom: 5px; letter-spacing: -1px; }
+.endereco { font-size: 14px; font-weight: 300; opacity: 0.8; line-height: 1.5; }
+
+.fotoDePerfil {
+    width: 140px; height: 140px;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    overflow: hidden;
+    background-color: #fff;
+    flex-shrink: 0;
+    z-index: 1;
+}
+
+.fotoDePerfil img { width: 100%; height: 100%; object-fit: cover; }
+
+.info { padding: 40px; }
+
+.sub-titulo {
+    font-size: 18px; color: var(--accent);
+    text-transform: uppercase; letter-spacing: 1px;
+    border-bottom: 2px solid rgba(0,0,0,0.05);
+    padding-bottom: 5px; margin: 30px 0 15px 0;
+}
+
+/* Habilidades Interativas */
+.lista-competencias {
+    list-style: none; display: grid;
+    grid-template-columns: 1fr 1fr; gap: 12px;
+}
+
+.lista-competencias li {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 12px 15px; border-radius: 8px;
+    border: 1px solid rgba(0,0,0,0.05);
+    border-left: 4px solid var(--primary);
+    font-size: 14px;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.lista-competencias li:hover {
+    transform: scale(1.03);
+    background: var(--white);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.1);
+    border-left-color: var(--accent);
+}
+
+.Resumo, .info-cargo { font-size: 15px; line-height: 1.7; color: var(--text-gray); text-align: justify; }
+.Experiencias { display: flex; justify-content: space-between; color: var(--primary); font-size: 17px; margin: 20px 0 5px 0; }
+.data { font-size: 13px; color: var(--accent); font-weight: bold; }
+
+/* Botões */
+.botoes-redes { display: flex; gap: 15px; margin-top: 20px; flex-wrap: wrap; }
+.btn-icon {
+    text-decoration: none; padding: 12px 20px; border-radius: 8px;
+    font-size: 14px; font-weight: 600; color: white;
+    transition: all 0.3s ease; display: inline-flex; align-items: center; gap: 10px;
+}
+
+.linkedin { background-color: #0077b5; }
+.github { background-color: #333; }
+.email { background-color: #e74c3c; }
+
+.btn-icon:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    filter: brightness(1.1);
+}
+
+@media (max-width: 650px) {
+    .header-top { flex-direction: column-reverse; text-align: center; }
+    .fotoDePerfil { margin-bottom: 20px; }
+    .lista-competencias { grid-template-columns: 1fr; }
+}
+
+@media print {
+    .header-top {
+        /* Força a exibição do fundo e cores no PDF */
+        background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%) !important;
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color: white !important;
+    }
+    
+    /* Esconde botões e barras que não devem sair no papel */
+    .progress-container, .btn-icon, .btn-salvar-pdf {
+        display: none !important;
+    }
+}
+
+.fotoDePerfil {
+    border: 3px solid rgba(255, 255, 255, 0.2); /* Borda branca translúcida */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra interna para dar profundidade */
+}
